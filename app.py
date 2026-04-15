@@ -1,4 +1,4 @@
-以下是您所需的红酒贸易公司专用开单Web App的代码.它支持在手机端创建和管理发票,送货单等单据，并将数据保存在浏览器中.
+以下是您所需的红酒贸易公司专用开单Web App的代码.它支持在手机端创建和管理发票,送货单等单据,并将数据保存在浏览器中.
 ```html
 <!DOCTYPE html>
 <html lang="zh-HK">
@@ -363,7 +363,7 @@
             <button id="clearHistoryBtn" class="small-btn" style="background:#f0e5dc;">清除全部記錄</button>
         </div>
         <div id="historyList">
-            <div style="text-align:center; color:#b1947a;">暫無單據，建立後會自動保存</div>
+            <div style="text-align:center; color:#b1947a;">暫無單據,建立後會自動保存</div>
         </div>
     </div>
     <div class="footer-note">
@@ -510,9 +510,9 @@
             lines.push(`備註：${doc.remarks}`);
         }
         lines.push(`═══════════════════════════════`);
-        if(doc.docType === "credit_note") lines.push(`※ 此為貸項通知單，抵扣金額`);
-        if(doc.docType === "debit_note") lines.push(`※ 此為借項通知單，應付金額增加`);
-        if(doc.docType === "delivery_note") lines.push(`※ 此為送貨單，僅供交貨確認`);
+        if(doc.docType === "credit_note") lines.push(`※ 此為貸項通知單,抵扣金額`);
+        if(doc.docType === "debit_note") lines.push(`※ 此為借項通知單,應付金額增加`);
+        if(doc.docType === "delivery_note") lines.push(`※ 此為送貨單,僅供交貨確認`);
         lines.push(`系統產生時間: ${new Date().toLocaleString()}`);
         return lines.join("\n");
     }
@@ -539,7 +539,7 @@
         const stored = localStorage.getItem(STORAGE_KEY);
         let docs = stored ? JSON.parse(stored) : [];
         if(!docs.length) {
-            historyListDiv.innerHTML = `<div style="text-align:center; color:#b1947a;">暫無單據，建立後會自動保存</div>`;
+            historyListDiv.innerHTML = `<div style="text-align:center; color:#b1947a;">暫無單據,建立後會自動保存</div>`;
             return;
         }
         historyListDiv.innerHTML = "";
@@ -577,7 +577,7 @@
         const newDocs = docs.filter(d => d.id != id);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(newDocs));
         renderHistory();
-        // 如果正在編輯的預覽不用特別處理，但可提示
+        // 如果正在編輯的預覽不用特別處理,但可提示
     }
 
     // 展示單據詳細預覽 (彈出或覆蓋預覽區)
@@ -585,7 +585,7 @@
         const previewHtml = generatePreview(doc);
         // 可直接把右側預覽區切換顯示
         previewDiv.innerText = previewHtml;
-        // 可同時提示使用者已載入查看模式，但不覆蓋編輯表單內容，但為了方便，可以詢問載入編輯? 
+        // 可同時提示使用者已載入查看模式,但不覆蓋編輯表單內容,但為了方便,可以詢問載入編輯? 
         if(confirm("要將此單據載入表單進行編輯/另存嗎？\n點擊確定會載入內容")) {
             loadDocumentToForm(doc);
         }
@@ -619,22 +619,22 @@
     function handleCreateDocument() {
         // 基本驗證: 至少要有客戶名稱與至少一個有效品項? 但寬容處理
         if(!docNumberInput.value.trim()) {
-            if(!confirm("單據編號為空，系統將自動生成編號，繼續嗎？")) return;
+            if(!confirm("單據編號為空,系統將自動生成編號,繼續嗎？")) return;
         }
         const newDoc = getCurrentDocumentObject();
         // 確保品項不為空描述但不強制
         saveDocument(newDoc);
         alert(`✅ 已儲存 ${newDoc.docTypeTitle} 編號: ${newDoc.docNumber}`);
-        // 儲存後不清空表單，但可重置為新增狀態，保留客戶資訊? 為了方便 保留當前內容，但讓用戶可以繼續開下一張，編號可提示變更?
-        // 但使用者體驗上建議重置編號與品項？但保留客戶可能更方便，這裡做輕微重置編號提示
+        // 儲存後不清空表單,但可重置為新增狀態,保留客戶資訊? 為了方便 保留當前內容,但讓用戶可以繼續開下一張,編號可提示變更?
+        // 但使用者體驗上建議重置編號與品項？但保留客戶可能更方便,這裡做輕微重置編號提示
         docNumberInput.value = "";  // 清空編號讓下一張手動輸入
-        // 保留客戶資料但也可以留，重新聚焦
+        // 保留客戶資料但也可以留,重新聚焦
         docNumberInput.focus();
         updatePreview();
         renderHistory();
     }
 
-    // 重置表單 (清空所有欄位，品項保留一筆空白)
+    // 重置表單 (清空所有欄位,品項保留一筆空白)
     function resetForm() {
         if(confirm("確定清空目前編輯中的所有資料？")) {
             docNumberInput.value = "";
@@ -650,7 +650,7 @@
 
     // 清除全部歷史
     function clearAllHistory() {
-        if(confirm("⚠️ 刪除所有儲存的單據記錄，無法復原，確定繼續嗎？")) {
+        if(confirm("⚠️ 刪除所有儲存的單據記錄,無法復原,確定繼續嗎？")) {
             localStorage.removeItem(STORAGE_KEY);
             renderHistory();
             alert("歷史記錄已清除");
