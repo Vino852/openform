@@ -1,4 +1,4 @@
-以下是您所需的红酒贸易公司专用开单Web App的代码.它支持在手机端创建和管理发票、送货单等单据，并将数据保存在浏览器中.
+以下是您所需的红酒贸易公司专用开单Web App的代码.它支持在手机端创建和管理发票,送货单等单据，并将数据保存在浏览器中.
 ```html
 <!DOCTYPE html>
 <html lang="zh-HK">
@@ -335,7 +335,7 @@
 
             <div class="form-row">
                 <label>備註 / 條款</label>
-                <textarea rows="2" id="remarks" placeholder="付款方式、運送條件、酒款備註..."></textarea>
+                <textarea rows="2" id="remarks" placeholder="付款方式,運送條件,酒款備註..."></textarea>
             </div>
 
             <div class="actions">
